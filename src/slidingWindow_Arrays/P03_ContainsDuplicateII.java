@@ -4,19 +4,23 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
-public class P02_MinSizeSubarraySum {
+public class P03_ContainsDuplicateII {
 
 	/*
 	 * PROBLEM STATEMENT 
 	 * 
+	 * Leetcode - 219
 	 * 
+	 * Given an integer array nums and an integer k,
+	 *  return true if there are two distinct indices i and j in the array 
+	 *  such that nums[i] == nums[j] and abs(i - j) <= k.
 	 * 
 	 * 
 	 * 
 	 */ 
 	 
 	/*
-	 * 1. Did I understand the problem? -- YES
+	 * 1. Did I understand the problem? 
 	 * 	yes or no 
 	 * 	If no ask the person to provide
 	 * 	with more details with examples 
@@ -63,10 +67,10 @@ public class P02_MinSizeSubarraySum {
 	@Test
 	public void example1() {
 		//Positive Test Data
-		int[] nums = {2,3,1,2,4,3};
-		int target = 7;
-		int expectedOutput = 2;
-		Assert.assertEquals(expectedOutput, minSubArray(nums,target));
+		int[] nums = {1,2,3,1};
+		int k = 3;
+		boolean expectedOutput = true;
+		Assert.assertEquals(expectedOutput, containsDuplicate(nums,k));
 	}
 	
 	
@@ -74,48 +78,47 @@ public class P02_MinSizeSubarraySum {
 	@Test
 	public void example2() {
 		//Edge Case Test Data
-		int[] nums = {3,6,4,5,1,2,3,4,1,8,9,0};
-		int target = 9;
-		//int[] nums = {1,4,4};
-		//int target = 4;
-		int expectedOutput = 1;
-		Assert.assertEquals(expectedOutput, minSubArray(nums,target));
+		int[] nums = {1,1,3,1,2,1,1};
+		int k = 2;
+		boolean expectedOutput = true;
+		Assert.assertEquals(expectedOutput, containsDuplicate(nums,k));
 	}
 	
 	@Test
 	public void example3() {
 		//Negative Test Data
-		int[] nums = {2,3,1,2,4,3};
-		int target = 32;
-		int expectedOutput = 0;
-		Assert.assertEquals(expectedOutput, minSubArray(nums,target));
+		int[] nums = {1,1,3,1,2,1,1};
+		int k = 8;
+		boolean expectedOutput = false;
+		Assert.assertEquals(expectedOutput, containsDuplicate(nums,k));
+		
 	}
 	
 	/*
 	 * --- Pseudo Code ---
-	 * 1. Create left = 0 and right = 0. Create variables minlen and assign it to Integer.MAX_NUMBER and initialize sum = 0							
-	 * 2. Traverse through while loop							
-	 * 3. while sum > target, reduce the sum by increasing left							
-	 * 4. When sum < target, increase right and add to sum							
-	 * 5. Return sum and update minleng when sum == target							
+	 * 1. Create two pointers left=0, right=1 and variable leng
+	 * 2. while both pointers are less than given array size, iterate
+	 * 3. when second pointer reaches the array size, increase first pointer by 1 and assign right = left +1;
+	 * 4. When elements are found, calculate length and use Math.abs to see if the diff is matching with k;
+	 * 5. If true, break. else run till a result is found or loop is completed. 
 	 */	
 	
-	private int minSubArray(int[] nums, int target) {
-		int pointer1 = 0, pointer2 = 0, minlen = Integer.MAX_VALUE, sum = 0, len = 0; 	
-		while(pointer2<nums.length) {
-			sum += nums[pointer2];
-			while(sum > target) sum -= nums[pointer1++];
-			if (sum < target) pointer2++;
-			else if (sum == target) {
-				len = pointer2-pointer1+1;
-				if (len <= minlen) minlen = len;
-					sum -= nums[pointer1++];
-					pointer2++;
-			}			
+	private boolean containsDuplicate(int[] nums, int k) {
+		int left = 0, right = 1, leng = 0;
+		boolean result = false;
+		while(right<nums.length && left<nums.length) {
+			if(nums[left] == nums[right]) {
+				leng = left-right;
+				result = Math.abs(leng)==k;	
+				if (result) break;
+			}
+			right++;
+			if(right==nums.length) {
+				left++;
+				right = left+1;
+			}	
 		}
-		if(minlen==Integer.MAX_VALUE) minlen = 0;
-		System.out.println(minlen);
-		return minlen;
-		}
-		
+		System.out.println(result);
+		return result;
 	}
+}
