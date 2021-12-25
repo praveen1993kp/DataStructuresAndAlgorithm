@@ -63,9 +63,11 @@ public class P02_MinSizeSubarraySum {
 	@Test
 	public void example1() {
 		//Positive Test Data
-		int[] nums = {2,3,1,2,4,3};
-		int target = 7;
-		int expectedOutput = 2;
+		//int[] nums = {2,3,1,2,4,3};
+		//int target = 7;
+		int[] nums = {1,2,3,4,5};
+		int target = 11;
+		int expectedOutput = 3;
 		Assert.assertEquals(expectedOutput, minSubArray(nums,target));
 	}
 	
@@ -110,7 +112,7 @@ public class P02_MinSizeSubarraySum {
 				len = pointer2-pointer1+1;
 				if (len <= minlen) minlen = len;
 					sum -= nums[pointer1++];
-					pointer2++;
+					pointer2++;	
 			}			
 		}
 		if(minlen==Integer.MAX_VALUE) minlen = 0;
