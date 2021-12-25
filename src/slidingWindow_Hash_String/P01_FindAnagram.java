@@ -114,7 +114,7 @@ public class P01_FindAnagram {
 		HashMap<Character,Integer> pMap = new HashMap<>();
 		if(slength < plength) System.out.println("No matches");
 		for(int i=0;i<plength;i++) {
-			pMap.put(p.charAt(i), sMap.getOrDefault(p.charAt(right), 0)+1);
+			pMap.put(p.charAt(i), sMap.getOrDefault(p.charAt(i), 0)+1);
 		}
 		while(right<slength) {
 			sMap.put(s.charAt(right), sMap.getOrDefault(s.charAt(right), 0)+1);
