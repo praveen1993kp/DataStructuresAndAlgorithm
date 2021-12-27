@@ -89,7 +89,7 @@ public class P01_jewelsAndStones {
 	public void example3() {
 		//Negative Test Data
 		String jewels = "zZa";
-		String stones = "ZZ";
+		String stones = "ZZaaS";
 		jewelsAndStonesHashMap(jewels,stones);
 	}
 	
