@@ -1,4 +1,4 @@
-package hashMap;
+package slidingWindow_Hash_String;
 
 import java.util.HashMap;
 import java.util.Set;
