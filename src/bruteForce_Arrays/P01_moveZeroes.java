@@ -81,7 +81,7 @@ public class P01_moveZeroes {
 		//Positive Test Data
 		int[] nums = {1,0,3,0,0,4,5,0,0,3,12,15};
 		int[] outputArray = {1,3,4,5,3,12,15,0,0,0,0,0}; 
-		Assert.assertTrue(Arrays.equals(outputArray, moveZeroesMethod(nums)));
+		Assert.assertTrue(Arrays.equals(outputArray, moveZeroesTwoPointer(nums)));
 	}
 	
 	@Test
@@ -91,7 +91,7 @@ public class P01_moveZeroes {
 		nums[2] = 1;
 		nums[1] = 2;		
 		int[] outputArray = {2,1,0,0,0};
-		Assert.assertTrue(Arrays.equals(outputArray, moveZeroesMethod(nums)));
+		Assert.assertTrue(Arrays.equals(outputArray, moveZeroesTwoPointer(nums)));
 	}
 	
 	@Test
@@ -101,18 +101,36 @@ public class P01_moveZeroes {
 		int[] nums2 = {0};
 		int[] outputArray = {1,3,4,5,3,12,15};
 		int[] outputArray2 = {0};
-		Assert.assertTrue(Arrays.equals(outputArray2, moveZeroesMethod(nums2)));
+		Assert.assertTrue(Arrays.equals(outputArray2, moveZeroesTwoPointer(nums2)));
 	}
 	
 	/*
 	 * --- Pseudo Code ---
+	 * 
+	 * Brute Force:
+	 * 
 	 * 1. Create two arraylists, al1 and al2
 	 * 2. Iterate through array
 	 * 3. If element is not "0", add to al1
 	 * 4. Else, add to al2
 	 * 5. using list.addAll() method, add al2 to al1
 	 * 6. Convert list to array
+	 * 
+	 * Time Complexity : O[n] + O[n] = O[n]
 	 *
+	 * Two Pointer Algorithm
+	 * 
+	 * 1. Create two pointers left and right. Left = 0 and right = left+1
+	 * 2. Traverse while right is less than input array length
+	 * 3. nums[left] == 0 && nums[right] !=0, 
+	 *		3a. Swap the values
+	 *		3b. Increment left and right
+	 * 4. nums[left] != 0 
+	 * 		4a. Increment left and right
+	 * 5. nums[left] == 0 && nums[right] ==0
+	 * 		5a. Increment only right
+	 * 
+	 * Time Complexity : <O[n]
 	 */	
 	
 	public int[] moveZeroesMethod(int[] nums) {
@@ -133,5 +151,23 @@ public class P01_moveZeroes {
 		//O[n] + //O[n]
 		//O[n]  -- Final time complexity
 		
+	}
+	
+	public int[] moveZeroesTwoPointer(int[] nums) {
+		int left = 0,right = 1;   //O[1]
+		
+		while(right<nums.length) { //<O[n]
+			if(nums[left]==0) { //O[1]
+				if(nums[right] !=0) { //O[1]
+					int temp = nums[left]; //O[1]
+					nums[left++] = nums[right]; //O[1]
+					nums[right] = temp; //O[1]
+				}	
+			} else left++; //O[1]
+			right++; //O[1]
+		}
+		
+		System.out.println(Arrays.toString(nums));
+		return nums;
 	}
 }
