@@ -72,7 +72,7 @@ public class P02_maxConsecutiveOnes {
 		//Positive Test Data
 		int[] nums = {1,0,1,1,1,1,0};
 		int expectedOutput = 4;
-		Assert.assertEquals(expectedOutput,maxConsecOnes(nums));
+		Assert.assertEquals(expectedOutput,maxConsecOnesSlidingWindow(nums));
 	}
 	
 	@Test
@@ -80,7 +80,7 @@ public class P02_maxConsecutiveOnes {
 		//Edge Case Test Data
 		int[] nums = {1,0,1,1,0,1,1,1,0,1,1,1};
 		int expectedOutput = 3;
-		Assert.assertEquals(expectedOutput,maxConsecOnes(nums));
+		Assert.assertEquals(expectedOutput,maxConsecOnesSlidingWindow(nums));
 	}
 	
 	@Test
@@ -88,17 +88,29 @@ public class P02_maxConsecutiveOnes {
 		//Negative Test Data
 		int[] nums = {0,0,0,0,0,0};
 		int expectedOutput = 0;
-		Assert.assertEquals(expectedOutput,maxConsecOnes(nums));
+		Assert.assertEquals(expectedOutput,maxConsecOnesSlidingWindow(nums));
 	}
 	
 	/*
 	 * --- Pseudo Code ---
+	 * 
+	 * Brute Force:
+	 * 
 	 * 1. Initialize Counter and tempCounter variables to 0
 	 * 2. Traverse using for loop for each element in array
 	 * 3. Traverse using for loop for each element in outerloop + 1
 	 * 4. If current element == 1, set the counter as 1
 	 * 5. If consecutive elements are 1, add the tempCounter by 1 and continue the loop
 	 * 6. At the end of inner loop, compare Counter and tempCounter values and assign latest value to counter
+	 * 
+	 * Sliding Window:
+	 * 
+	 * 1. Create counters counter=Integer.MIN_Value and tempCounter = 0
+	 * 2. Create pointers left and right and initiate both to 0
+	 * 3. Traverse through array till right less than array length
+	 * 4. If right equals 1, increment tempCounter by 1 and grow right
+	 * 5. Else if right becomes 0, increment right, assign shrink left till right and reset tempCounter
+	 * 6. Find the max among counter and tempCounter each time and finally return the counter
 	 * 
 	 *
 	 */	
@@ -114,6 +126,28 @@ public class P02_maxConsecutiveOnes {
 			}
 			if(tempCounter>counter) counter = tempCounter; //1	
 		}
+		return counter; //1
+	}
+	
+	public int maxConsecOnesSlidingWindow(int[] nums) {
+		int tempCounter = 0; //1
+		int counter = Integer.MIN_VALUE; //1
+		int left=0,right=0;
+		
+		while(right<nums.length) {
+			if(nums[right] == 1) {
+				right++;
+				tempCounter++;
+			}
+			else {
+				right++;
+				left=right;
+				tempCounter = 0;
+			}
+			counter = Math.max(counter, tempCounter);
+		}
+		
+		System.out.println(counter);
 		return counter; //1
 	}
 }
