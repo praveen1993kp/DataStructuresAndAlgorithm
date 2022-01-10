@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
-public class P03_ReverseString {
+public class P03_ReverseStringAndSwap {
 
 	/*
 	 * PROBLEM STATEMENT 
