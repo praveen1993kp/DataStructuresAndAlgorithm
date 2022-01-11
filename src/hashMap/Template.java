@@ -1,6 +1,13 @@
 package hashMap;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+
 import org.junit.Test;
+
+import junit.framework.Assert;
 
 public class Template {
 
@@ -61,19 +68,28 @@ public class Template {
 	@Test
 	public void example1() {
 		//Positive Test Data
-		
+		char[] ch = {'a','b','a','d','c','d','c','d'};
+		String output = "a2b1c2d3";  // If output is required to be in ascending order of keys, use TreeMap
+		String output1 = "a2b1d3c2";  // If output is required to be in insertion order of keys, use LinkedHashMap
+		Assert.assertEquals(output1,groupOccurrences(ch));
 	}
 	
+	
+
 	@Test
 	public void example2() {
 		//Edge Case Test Data
-		
+		char[] ch = {'a','a','A','B','a'};
+		String output1 = "a3A1B1";  // If output is required to be in insertion order of keys, use LinkedHashMap
+		Assert.assertEquals(output1,groupOccurrences(ch));
 	}
 	
 	@Test
 	public void example3() {
 		//Negative Test Data
-		
+		char[] ch = {};
+		String output1 = "";  // If output is required to be in insertion order of keys, use LinkedHashMap
+		Assert.assertEquals(output1,groupOccurrences(ch));
 	}
 	
 	/*
@@ -81,7 +97,21 @@ public class Template {
 	 * 
 	 */	
 	
-	public void method1() {
+	private String groupOccurrences(char[] ch) {
+		LinkedHashMap<Character,Integer> hMap = new LinkedHashMap<>();
+		String output = "";
+		if(ch.length==0) return output;
 		
+		for(int i=0;i<ch.length;i++) {
+			hMap.put(ch[i], hMap.getOrDefault(ch[i], 0)+1);
+		}
+		//System.out.println(hMap);
+		
+		for(Entry<Character,Integer> entry : hMap.entrySet()) {
+			output += entry.getKey() + ""+ entry.getValue();
+		}
+		
+		System.out.println(output);
+		return output;
 	}
 }
