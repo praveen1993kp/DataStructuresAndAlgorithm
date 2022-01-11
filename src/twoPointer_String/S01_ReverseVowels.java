@@ -1,7 +1,11 @@
 package twoPointer_String;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class S01_ReverseVowels {
@@ -9,7 +13,7 @@ public class S01_ReverseVowels {
 	/*
 	 * PROBLEM STATEMENT 
 	 * 
-	 * * Leetcode No - 345
+	 * Leetcode No - 345
 	 * 
 	 * Given a string s, reverse only all the vowels in the string and return it. The vowels are 'a','e','i','o','u'
 	 * and they can appear in both cases
@@ -66,48 +70,68 @@ public class S01_ReverseVowels {
 	@Test
 	public void example1() {
 		//Positive Test Data
-		String s = "aeiou";
-		String output = "uoiea";
-		reverseVowels_TwoPointer(s);
+		String str = "AbraCadABRa";
+		String reversedStr = "abrACadaBRA";
+		Assert.assertEquals(reverseVowelsTwoPointer(str), reversedStr);
 	}
 	
+	@Test
+	public void example2() {
+		//Edge Case Test Data
+		String str = "A man, a plan, a canal: Panama";
+		String reversedStr = "a man, a plan, a canal: PanamA";
+		Assert.assertEquals(reverseVowelsTwoPointer(str), reversedStr);
+	}
+	
+	@Test
+	public void example3() {
+		//Negative Test Data
+		String str = "qwrty";
+		String reversedStr = "qwrty";
+		Assert.assertEquals(reverseVowelsTwoPointer(str), reversedStr);
+	}
 	
 	/*
 	 * --- Pseudo Code ---
 	 * 
-	 * 1. Create temp variables left and right. left = 0 and right = string.length()-1;
-	 * 2. Start with left and traverse 
-	 * 3. When vowel is found in left and right, swap values
-	 * 	3a. When vowel is not found in right, decrease right by 1
-	 *  3b. When vowel is not found in left, increase by 1
+	 * 1. Create a method if a given character is vowel or not
+	 * 2. Convert given input to charArray
+	 * 3. Traverse for length of charArray while left less than right
+	 * 4. While left is not vowel, increment. Similarly while right is not vowel, decrement
+	 * 5. If left is vowel and right is vowel, swap them and store in charArray
+	 * 6. After exiting from while loop, add the character array elements into output string
 	 * 
 	 */	
 	
-private void reverseVowels_TwoPointer(String s) {
-		
-		int left = 0;
-		int right = s.length()-1;
-		char[] ch = s.toCharArray();
+	public boolean isVowel(char ch) {
+		if((ch=='a')||(ch=='e')||(ch=='i')||(ch=='o')||(ch=='u')||
+					(ch=='A')||(ch=='E')||(ch=='I')||(ch=='O')||ch=='U') return true;
+		return false;
+	}
+	
+	public String reverseVowelsTwoPointer(String s){
+		int left=0,right=s.length()-1;
+		char temp = 0 ;
+		char[] inputAsArray = s.toCharArray();
+		String output = "";
+
 		while(left<right) {
-			if(isVowel(ch[left])&&isVowel(ch[right])){
-				char temp = ch[left];
-				ch[left] = ch[right];
-				ch[right] = temp;
-				left++;
-				right--;
-			}else if(isVowel(ch[left])) {
-				right--;
+			
+			while(!isVowel(inputAsArray[left]) && left < right) left++;
+			while(!isVowel(inputAsArray[right]) && left < right) right--;
+			
+			if(isVowel(inputAsArray[left]) && isVowel(inputAsArray[right])){
+				temp = inputAsArray[left];
+				inputAsArray[left++] = inputAsArray[right];
+				inputAsArray[right--] = temp;	
 			}
-			else {
-				left++;
-			}
-		System.out.println(Arrays.toString(ch));
 		}
 		
+		for(int i=0;i<inputAsArray.length;i++) {
+			output += inputAsArray[i];
 		}
-	private boolean isVowel(char c) {
-		boolean result = false;
-		if((c == 'a')||(c == 'A')||(c == 'e')||(c == 'E')||(c == 'i')||(c == 'I')||(c == 'o')||(c == 'u')||(c == 'U'));
-			return true;
+		
+		System.out.println(output);
+		return output;
 	}
 }
