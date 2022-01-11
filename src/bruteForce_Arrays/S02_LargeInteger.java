@@ -14,7 +14,7 @@ public class S02_LargeInteger {
 	/*
 	 * PROBLEM STATEMENT  
 	 * 
-	 * LeetCode Problem No- 
+	 * LeetCode Problem No- 66	
 	 * 
 	 * You are given a large integer represented as an integer array digits, 
 	 * where each digits[i] is the ith digit of the integer. 

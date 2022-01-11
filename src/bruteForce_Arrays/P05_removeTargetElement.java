@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
-public class P02_removeTargetElement {
+public class P05_removeTargetElement {
 	
 	/*
 	 * 
