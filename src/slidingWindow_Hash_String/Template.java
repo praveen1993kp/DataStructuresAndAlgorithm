@@ -1,22 +1,13 @@
-package interviewQuestions;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+package slidingWindow_Hash_String;
 
 import org.junit.Test;
 
-public class redBus_MaximumOccurredInteger {
+public class Template {
 
 	/*
 	 * PROBLEM STATEMENT 
 	 * 
-	 * int[] arr = {1,2,3,2,3,2,3,4}
-	 * output = 2,3
+	 * 
 	 * 
 	 * 
 	 * 
@@ -76,9 +67,7 @@ public class redBus_MaximumOccurredInteger {
 	@Test
 	public void example2() {
 		//Edge Case Test Data
-		int[] arr = {1,2,3,2,3,2,3,4,5,3,2,3};
-		 //output = 2,3
-		maxInteger(arr);
+		
 	}
 	
 	@Test
@@ -90,37 +79,9 @@ public class redBus_MaximumOccurredInteger {
 	/*
 	 * --- Pseudo Code ---
 	 * 
-	 * If only one element needs to be returned
-	 * 
-	 * 1. Create left = 0, right = 0, sum = 0, maxSum = Integer.MIN_VALUE, number = 0;
-	 * 2. Keep left as constant and right as moving pointer
-	 * 3. Iterate through each element and count the value.
-	 * 
-	 * If all the elements needs to be returned
-	 * 1. Add all the elements to hashMap
-	 * 2. Iterate through the values and get maximum value
-	 * 3. Iterate through the keys and return the keys which have maximum value
 	 */	
 	
-	private void maxInteger(int[] nums) {
-		int left = 0, maxCounter = Integer.MIN_VALUE;
-		HashMap<Integer,Integer> hMap = new HashMap<>();
-		while(left<nums.length) hMap.put(nums[left], hMap.getOrDefault(nums[left++], 0)+1);
-		Iterator<Integer> vals = hMap.values().iterator();
-		while(vals.hasNext()) maxCounter = Math.max(maxCounter, vals.next());	 
-		Iterator<Integer> keys = hMap.keySet().iterator();
-		while(keys.hasNext()) {
-			Integer currentKey = keys.next();
-			if(hMap.get(currentKey)==maxCounter) System.out.println(currentKey);
-		}
-	}
-	
-	private void maxInteger_OptimizedSoln(int[] nums) {
-		int left = 0, maxCounter = Integer.MIN_VALUE,counter=0;
-		HashMap<Integer,Integer> hMap = new HashMap<>();
-		while(left<nums.length) {
-			hMap.put(nums[left], hMap.getOrDefault(nums[left++], 0)+1);
-			
-		}
+	public void method1() {
+		
 	}
 }
