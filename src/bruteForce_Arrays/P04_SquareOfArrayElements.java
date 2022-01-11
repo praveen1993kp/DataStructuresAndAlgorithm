@@ -77,7 +77,7 @@ public class P04_SquareOfArrayElements {
 		int[] nums = {1,2,3,3,4,5};
 		int[] outputExpected = {1,4,9,9,16,25};
 		
-		Assert.assertTrue(Arrays.equals(outputExpected, squareMethod(nums)));
+		Assert.assertTrue(Arrays.equals(outputExpected, squareTwoPointer(nums)));
 	}
 	
 	@Test
@@ -85,7 +85,7 @@ public class P04_SquareOfArrayElements {
 		//Edge Case Test Data
 		int[] nums = {-5,-4,-3,1,3,4};
 		int[] outputExpected = {1,9,9,16,16,25};
-		Assert.assertTrue(Arrays.equals(outputExpected, squareMethod(nums)));
+		Assert.assertTrue(Arrays.equals(outputExpected, squareTwoPointer(nums)));
 		
 	}
 	
@@ -94,22 +94,50 @@ public class P04_SquareOfArrayElements {
 		//Negative Test Data
 		int[] nums = {3};
 		int[] outputExpected = {9};
-		Assert.assertTrue(Arrays.equals(outputExpected, squareMethod(nums)));
+		Assert.assertTrue(Arrays.equals(outputExpected, squareTwoPointer(nums)));
 	}
 	
 	/*
 	 * --- Pseudo Code ---
+	 * 
+	 * Brute Force:
+	 * 
 	 * 1. Traverse through each element of the array using for loop
 	 * 2. Multiply the number with same number
 	 * 3. Store it in the same element of the array
 	 * 4. After the end of for loop, sort using Arrays.sort() method
+	 * 
+	 * Two Pointer Algorithm :
+	 * 1. Create an output array of size same that of input array
+	 * 2. Create pointers left=0,right=outputArray.length-1 and index = outputArray.length-1;
+	 * 3. Compare the values in nums[left] and nums[right]
+	 * 		3a. Whenever one of the Math.abs values are greater, add the highest one to current index of new array.
+	 * 		3b. Decrement the index and also decrement/increment right/left based on element added into another array.
+	 * 		3c. When Math.abs values of left and right are equal, add any one of the value into new one and change its pointer value
+	 * 4. Traverse through nums array till left is less than right
+	 * 
 	 */	
 	
 	public int[] squareMethod(int[] nums) {
-		for(int i=0; i<nums.length; i++) {
+		for(int i=0; i<nums.length; i++) 
 			nums[i] = nums[i] * nums[i];
-		}
-		Arrays.sort(nums);
+		Arrays.sort(nums); // Time Complexity is O[n log n]
 		return nums;
+	}
+	
+	public int[] squareTwoPointer(int[] nums) {
+		int left=0,right=nums.length-1,insertPosition=nums.length-1;  //O[1]
+		int[] outputArray = new int[nums.length];  //O[1]
+		
+		while(left<=right) {   //O[3n]
+			if(Math.abs(nums[right])>=Math.abs(nums[left])) //O[1]
+				outputArray[insertPosition--] = nums[right] * nums[right--]; //O[1]
+			else 
+				outputArray[insertPosition--] = nums[left] * nums[left++]; //O[1]
+		}
+		
+		System.out.println(Arrays.toString(outputArray)); //O[1]
+		return outputArray; //O[1]
+		
 	}
 }
