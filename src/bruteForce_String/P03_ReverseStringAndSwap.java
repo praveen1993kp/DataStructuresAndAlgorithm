@@ -90,7 +90,13 @@ public class P03_ReverseStringAndSwap {
 	
 	/*
 	 * --- Pseudo Code ---
+	 * Brute Force Approach:
 	 * 
+	 * 1. Split the words of string by " "
+	 * 2. Assign right = s.length-1 and return the words of string first
+	 * 3. Create a null string. When alternative elements are found, swap the characters of it and add to original array
+	 * 4. If the current word is not alternative, then add the word to output string as it is.
+	 * 5. As we need to include spaces, add them accordingly. Note that space should not be added before first element/after last string
 	 */	
 	
 	private String reverseStringAndSwap(String str) {

@@ -143,11 +143,7 @@ public class P01_ReverseVowels {
 		}
 		System.out.println(outputString);
 		return outputString;
-	}
-	
-	
-
-		
+	}	
 }		
 
 	
