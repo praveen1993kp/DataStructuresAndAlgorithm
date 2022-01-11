@@ -116,7 +116,7 @@ public class P02_SearchInsertPosition {
 	private int insertPosition(int[] nums, int k) {
 		int left=0, right = nums.length-1, mid = 0, counter = 0;
 		while(left<=right) {
-			mid = (left+right)/2;
+			mid = (left+right)/2;    //alternate mid=low+(high-low)/2;
 			if(nums[mid] == k) {
 				System.out.println(mid);
 				counter++;
