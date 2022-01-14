@@ -88,6 +88,15 @@ public class P05_FindMaxNumberAndItsOccurrence {
 	/*
 	 * --- Pseudo Code ---
 	 * 
+	 * HashMap:
+	 * 
+	 * 1. Create a hashMap
+	 * 2. Add all the elements into hashMap
+	 * 3. Once its added, check if the count of current element is greater than maxFrequency
+	 * 4. If so, assign max frequency to current element count
+	 * 5. If only one element needs to be returned, return the maxNum
+	 * 6. If all the elements with maxFrequency count has to be returned, use entryset
+	 * 
 	 */	
 	
 	private void findTheNumber(int[] nums) {
