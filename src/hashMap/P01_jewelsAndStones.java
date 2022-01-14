@@ -96,11 +96,20 @@ public class P01_jewelsAndStones {
 	/*
 	 * --- Pseudo Code ---
 	 * 
+	 * Brute Force:
+	 * 
 	 * 1. Create two pointers left and right
 	 * 2. Point left to jewels and second pointer to stones
 	 * 3. If jewel.charat(left) matches stones.charAt(right), add to hashmap
 	 * 4. While adding to hashmap, check if count already exists. If so, increment by one
 	 * 5. Loop till end of jewels
+	 * 
+	 * HashMap:
+	 * 
+	 * 1. Create a hashmap and add jewels into hashmap
+	 * 2. Traverse through the stones string
+	 * 		2a. For each character in stones, if the character is available in hmap, increase counter
+	 * 3. Return the counter
 	 * 
 	 */	
 	
