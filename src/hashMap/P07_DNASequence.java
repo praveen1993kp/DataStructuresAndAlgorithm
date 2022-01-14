@@ -99,6 +99,12 @@ public class P07_DNASequence {
 	/*
 	 * --- Pseudo Code ---
 	 * 
+	 * HashMap:
+	 * 
+	 * 1. Create a hashmap with string as key and Integer as value
+	 * 2. For each 10 set of elements, get the sequence and store it as key
+	 * 3. For each key, getOrDefault the value and increment it by 1
+	 * 4. Using entryset, if any entries are found to have value greater than 1, return all of them
 	 */	
 	
 	private ArrayList<String> findRepeatedDNASequence(String s) {
