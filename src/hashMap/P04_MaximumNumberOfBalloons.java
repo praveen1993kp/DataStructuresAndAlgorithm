@@ -152,6 +152,19 @@ public class P04_MaximumNumberOfBalloons {
 	/*
 	 * --- Pseudo Code ---
 	 * 
+	 * HashMap:
+	 * 
+	 * 1. Create a hashmap and insert the balloon values in it
+	 * 2. Iterate through the given string text and if the characters are already available in hmap,
+	 * 		add them to the same hashmap
+	 * 3. After all the elements are added, reduce the count of b,a,n by 1 and l,o by 2
+	 * 4. Find the minimum count among all the characters and that forms the maximum balloons
+	 * 
+	 * Ascii:
+	 * 
+	 * 1. Add the given string characters into a char array (using their ascii)
+	 * 2. Get the minimum count of b,a,n and l/2 and o/2.
+	 * 3. That gives maximum number of balloons can be formed from input text.
 	 */	
 	
 	
