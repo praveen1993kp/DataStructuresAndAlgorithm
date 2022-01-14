@@ -1,4 +1,4 @@
-package slidingWindow_Hash_String;
+package hashMap;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class P05_GroupAnagrams {
+public class P09_GroupAnagrams {
 
 	/*
 	 * PROBLEM STATEMENT 

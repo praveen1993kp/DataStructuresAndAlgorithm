@@ -1,4 +1,4 @@
-package ascii;
+package hashMap;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
-public class P01_ValidAnagram {
+public class P08_ValidAnagram {
 
 	/*
 	 * PROBLEM STATEMENT 
@@ -121,6 +121,18 @@ public class P01_ValidAnagram {
 	 * 
 	 * */	
 	
+	private boolean isValidAnagram_UsingHashMap(String s, String t) {
+		if(s.length()!=t.length()) return false;
+		HashMap<Character,Integer> sMap = new HashMap<>();
+		HashMap<Character,Integer> tMap = new HashMap<>();
+		for(int i=0;i<s.length();i++) {
+			sMap.put(s.charAt(i), sMap.getOrDefault(s.charAt(i), 0)+1);
+			tMap.put(t.charAt(i), tMap.getOrDefault(t.charAt(i), 0)+1);
+		}
+		if(sMap.equals(tMap)) return true;
+		return false;
+	}
+	
 	private boolean isValidAnagram(String s, String t) {
 		if(s.length()!=t.length()) return false;
 		char[] sAscii =  new char[26];
@@ -133,15 +145,5 @@ public class P01_ValidAnagram {
 		return false;
 	}
 	
-	private boolean isValidAnagram_UsingHashMap(String s, String t) {
-		if(s.length()!=t.length()) return false;
-		HashMap<Character,Integer> sMap = new HashMap<>();
-		HashMap<Character,Integer> tMap = new HashMap<>();
-		for(int i=0;i<s.length();i++) {
-			sMap.put(s.charAt(i), sMap.getOrDefault(s.charAt(i), 0)+1);
-			tMap.put(t.charAt(i), tMap.getOrDefault(t.charAt(i), 0)+1);
-		}
-		if(sMap.equals(tMap)) return true;
-		return false;
-	}
+	
 }
