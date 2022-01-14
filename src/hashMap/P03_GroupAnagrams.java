@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class P09_GroupAnagrams {
+public class P03_GroupAnagrams {
 
 	/*
 	 * PROBLEM STATEMENT 

@@ -1,4 +1,4 @@
-package hashMap;
+package twoPointer_Arrays;
 
 import org.junit.Test;
 
