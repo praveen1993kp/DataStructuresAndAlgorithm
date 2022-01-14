@@ -102,11 +102,12 @@ public class P02_WordPattern {
 	/*
 	 * --- Pseudo Code ---
 	 * 
-	 * 1. Create hashmap
+	 * 1. Create two hashmaps
 	 * 2. Split the string array by using space
-	 * 2. When a pattern character is not available in hashMap, add it with relevant value from string s
-	 * 3. For each character in pattern, get the respective value from stArray.
-	 * 4. If the value for that character returned from hMap and stArray are not same, return false
+	 * 3. For hashmap1, pattern character is the key and for hashmap2, string[i] is the key
+	 * 3. Since there should not be duplicates in pattern as well as string, 
+	 * 		3a. Whenever an entry is not available in both hashmaps, add the respective keys and values
+	 * 4. Do assertion by validating the values from both hashmaps
 	 */	
 	
 	private boolean wordPattern(String pattern, String s) {
