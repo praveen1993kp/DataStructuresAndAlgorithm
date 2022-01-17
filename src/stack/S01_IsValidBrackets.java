@@ -91,6 +91,24 @@ public class S01_IsValidBrackets {
 		Assert.assertEquals(expected, isValidBracket(s));
 	}
 	
+	@Test
+	public void example4() {
+		//Negative Test Data
+		String s = "){";
+		boolean expected = false;
+		Assert.assertEquals(expected, isValidBracket(s));
+	}
+	
+	@Test
+	public void example5() {
+		//Negative Test Data
+		String s = "([}}])";
+		boolean expected = false;
+		Assert.assertEquals(expected, isValidBracket(s));
+	}
+	
+	
+	
 	/*
 	 * --- Pseudo Code ---
 	 * 
@@ -101,6 +119,7 @@ public class S01_IsValidBrackets {
 	 * 		3b. If any closing brace is found, check if it matches the value returned by that character in hashmap
 	 * 		3c. If true, remove from stack
 	 * 4. At the end, if the stack is empty, return true. Else false
+	 * 5. Edge Case Data : example4 and example5
 	 * 
 	 * 
 	 */	
@@ -117,7 +136,9 @@ public class S01_IsValidBrackets {
 		for(int i=0;i<ch.length;i++) {
 			if(!hMap.containsKey(ch[i])) stack.push(ch[i]);
 			else {
-				if(stack.peek()==hMap.get(ch[i])) stack.pop();
+				if(stack.isEmpty()) return false;
+				else if(stack.peek()==hMap.get(ch[i])) stack.pop(); 
+				else return false;
 			}
 		}
 		return stack.isEmpty();
