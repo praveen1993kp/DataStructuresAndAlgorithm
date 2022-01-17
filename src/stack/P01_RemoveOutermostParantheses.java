@@ -72,7 +72,7 @@ public class P01_RemoveOutermostParantheses {
 	public void example1() {
 		//Positive Test Data
 		String s = "(()())(())";
-		removeParantheses(s);
+		remove(s);
 	}
 	
 	
@@ -82,7 +82,7 @@ public class P01_RemoveOutermostParantheses {
 		//Edge Case Test Data
 		String s = "(()())(())(()(()))";
 		String output = "()()()()(())";
-		removeParantheses(s);
+		remove(s);
 	}
 	
 	@Test
@@ -90,7 +90,7 @@ public class P01_RemoveOutermostParantheses {
 		//Negative Test Data
 		String s = "()()";
 		String output = "";
-		removeParantheses(s);
+		remove(s);
 	}
 	
 	/*
@@ -123,4 +123,23 @@ public class P01_RemoveOutermostParantheses {
 		}
 		return sb.toString();
 	}
+	
+	private String remove(String s) {
+		Stack<Character> stack = new Stack<>();
+		char[] ch = s.toCharArray();
+		StringBuffer sb = new StringBuffer();
+		
+		for (char c : ch) {
+			if(c=='(') {
+				if(stack.size()>=1) sb.append(c);
+					stack.push(c);
+			} else {
+				if(stack.size()>1) sb.append(c);
+					stack.pop();
+				}
+			}
+		System.out.println(sb.toString());
+		return sb.toString();
+		}
+		
 }
