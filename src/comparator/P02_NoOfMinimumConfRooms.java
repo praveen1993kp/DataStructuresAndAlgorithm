@@ -1,6 +1,7 @@
 package comparator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -19,6 +20,11 @@ public class P02_NoOfMinimumConfRooms {
 
 	/*
 	 * PROBLEM STATEMENT 
+	 * 
+	 * Given an String array A of size N denoting time intervals of different meetings.
+	 * Find the minimum number of conference rooms required so that all meetings can be done.
+	 * 
+	 * Hint Comparator
 	 * 
 	 * 
 	 * 
@@ -76,15 +82,15 @@ public class P02_NoOfMinimumConfRooms {
 		//Positive Test Data
 		String[][] meetingTimes = {{"09 00", "09 45"},{"09 30", "10 30"}, {"10 40", "12 00"},{"11 00", "13 00"}, {"11 45", "14 00"},{"16 00", "17 00"}};
 		int expectedOutput = 3;
-		minConfRooms(meetingTimes);
+		Assert.assertEquals(expectedOutput, minConfRooms2(meetingTimes));
 	}
 	
 	@Test
 	public void example2() {
 		//Edge Case Test Data
-		String[][] meetingTimes = {{"09 00", "09 30"},{"11 00", "11 10"},{"10 30", "11 00"},{"10 40", "11 40"}};
+		String[][] meetingTimes = {{"09 00", "09 30"},{"09 00", "09 30"},{"10 30", "11 00"},{"10 40", "11 40"}};
 		int expectedOutput = 2;
-		minConfRooms(meetingTimes);
+		Assert.assertEquals(expectedOutput, minConfRooms2(meetingTimes));
 	}
 	
 	@Test
@@ -92,42 +98,96 @@ public class P02_NoOfMinimumConfRooms {
 		//Negative Test Data
 		String[][] meetingTimes = {{"09 00", "09 30"},{"12 00", "12 10"},{"13 30", "13 50"},{"10 40", "11 40"}};
 		int expectedOutput = 1;
-		minConfRooms(meetingTimes);
+		Assert.assertEquals(expectedOutput, minConfRooms2(meetingTimes));
 	}
 	
 	/*
 	 * --- Pseudo Code ---
 	 * 
+	 * 1. Create a 2D array.
+	 * --Loop Begins--
+	 * 2. Traverse till end of meetingTimes length
+	 * 3. Replace the space with "" in each meeting time and convert it into int and store in new array
+	 * --Loop Ends--
+	 * 4. Use Arrays.sort(lst, ) and using lambda, create (a,b) ->
+	 * 7. Inside comparator compare method,
+	 * 		7a. If e1 value is not equal to e2 value, return e1 value - e2 value
+	 * 		7b. Else return e1 key - e2 key
+	 * 8. Initialize variables left=0 and right=1
+	 * 9. Traverse till right is less that meeting times length
+	 * 10. If e1 endtime <= e2 starttime, decrease the counter and increment right
+	 * 11. Increase right by default for every loop
+	 * 12. Return the counter
+	 * 
 	 */	
 	
 	public void minConfRooms(String[][] meetingTimes) {
-		HashMap<String,String> hMap = new HashMap<>();
+		HashMap<Integer,Integer> hMap = new HashMap<>();
+		int counter = meetingTimes.length;
 		
 		for(int i=0;i<meetingTimes.length;i++) {
-			String currentKey = meetingTimes[i][0];
-			String currentVal = meetingTimes[i][1];
+			int currentKey = Integer.valueOf(meetingTimes[i][0].replace(" ", ""));
+			int currentVal = Integer.valueOf(meetingTimes[i][1].replace(" ", ""));;
 			
 			hMap.put(currentKey, currentVal);
 		}
 		
-		List<Entry<String,String>> lst = new ArrayList<> (hMap.entrySet());
+		List<Entry<Integer,Integer>> lst = new ArrayList<> (hMap.entrySet());
 		
-		Collections.sort(lst, new Comparator<Entry<String,String>>() {
+		Collections.sort(lst, new Comparator<Entry<Integer,Integer>>() {
 
 			@Override
-			public int compare(Entry<String, String> e1, Entry<String, String> e2) {
-				int vals = e1.getValue().compareTo(e2.getValue());
-				
-				return vals;
-				
-				}
-			
+			public int compare(Entry<Integer,Integer> e1, Entry<Integer,Integer> e2) {
+				if(e1.getValue() != e2.getValue()) return e1.getValue() - e2.getValue();
+				else return e1.getKey() - e2.getKey();
+				}		
 		});
 		
-		System.out.println(lst.toString());
+		int left = 0,right = 1;
+		while(right < meetingTimes.length) {
+			int endTime = lst.get(left).getValue();
+			int startTime = lst.get(right).getKey();
+			if(endTime <= startTime) {
+				counter--;
+				left++;
+			}
+			right++;
+		}
 		
+		System.out.println(counter);
+	
 		
+	}
+	
+	
+	public int minConfRooms2(String[][] meetingTimes) {
+		int counter = meetingTimes.length;
+		int[][] integerTimes = new int[meetingTimes.length][2];
+
+		for(int i=0;i<counter;i++){
+			integerTimes[i][0] = Integer.valueOf(meetingTimes[i][0].replace(" ",""));
+			integerTimes[i][1] = Integer.valueOf(meetingTimes[i][1].replace(" ",""));
+		}
+
+		Arrays.sort(integerTimes, (a,b) -> {
+			if (a[1]!=b[1]) return a[1] - b[1];
+			else return a[0] - b[0];
+		});
+
+		int left = 0,right = 1;
+
+		while(right<meetingTimes.length){
+			int prevEndTime = integerTimes[left][1];
+			int currStrTime = integerTimes[right][0];
+			if(prevEndTime <= currStrTime){
+				counter--;
+				left++;
+			}
+			right++;
+		}
 		
+		System.out.println(counter);
+		return counter;
 		
 	}
 }
