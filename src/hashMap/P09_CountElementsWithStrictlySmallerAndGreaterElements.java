@@ -76,7 +76,7 @@ public class P09_CountElementsWithStrictlySmallerAndGreaterElements {
 		//Positive Test Data
 		int[] nums = {11,7,2,15};
 		int output = 2;
-		Assert.assertEquals(output, countElements(nums));
+		Assert.assertEquals(output, countElements_WithoutMap(nums));
 	}
 	
 
@@ -85,7 +85,7 @@ public class P09_CountElementsWithStrictlySmallerAndGreaterElements {
 		//Edge Case Test Data
 		int[] nums = {-3,3,3,90};
 		int output = 2;
-		Assert.assertEquals(output, countElements(nums));
+		Assert.assertEquals(output, countElements_WithoutMap(nums));
 	}
 	
 	@Test
@@ -93,7 +93,15 @@ public class P09_CountElementsWithStrictlySmallerAndGreaterElements {
 		//Negative Test Data
 		int[] nums = {3,3,3,3};
 		int output = 0;
-		Assert.assertEquals(output, countElements(nums));
+		Assert.assertEquals(output, countElements_WithoutMap(nums));
+	}
+	
+	@Test
+	public void example4() {
+		//Negative Test Data
+		int[] nums = {739,-458,162,-458,162,-458,-458,-458,-458,162,162,162,162,162,162,162,162,-458,162,582,162,-458};
+		int output = 13;
+		Assert.assertEquals(output, countElements_WithoutMap(nums));
 	}
 	
 	/*
@@ -106,7 +114,15 @@ public class P09_CountElementsWithStrictlySmallerAndGreaterElements {
 	 * 3. Set the counter as length of input array. Get the first and last elements
 	 * 4. If both are same, it means there is no in between number and set the counter as 0
 	 * 5. Else, set counter by reducing the value of first and last elements				
-	 * 6. Return the counter					
+	 * 6. Return the counter	
+	 * 
+	 * --Without any additional space--
+	 * 
+	 * 1. Create min and max integer values
+	 * 2. Find min and max 
+	 * 3. Initialize counter to 0. 
+	 * 4. Traverse through each element. If the element is less than max and greater than min, increase counter
+	 * 5. Return the counter				
 	 * 
 	 */	
 	
@@ -125,6 +141,25 @@ public class P09_CountElementsWithStrictlySmallerAndGreaterElements {
 		
 		if(firstElement == lastElement) counter = 0;		
 		else counter -= (tMap.get(firstElement) + tMap.get(lastElement));
+		
+		return counter;
+	}
+	
+	
+	private int countElements_WithoutMap(int[] nums) {
+		int min = Integer.MAX_VALUE;
+		int max = Integer.MIN_VALUE;
+		
+		for(int currElement : nums) {
+			if(min>currElement) min=currElement;
+			if(max<currElement) max = currElement;
+		}
+		
+		
+		int counter = 0;
+		for(int currElement : nums) {
+			if(min < currElement && currElement < max) counter++;
+		}
 		
 		return counter;
 	}
