@@ -103,7 +103,9 @@ public class P07_ShuffleString {
 	 * 
 	 * Better Solution
 	 * 
-	 * 1. 
+	 * 1. Create a char array of length indices
+	 * 2. Loop through the indices array and assign ch[indices[i]] = s.charAt(i);
+	 * 3. Return ch as string
 	 * 
 	 */	
 	
