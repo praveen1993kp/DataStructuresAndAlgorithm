@@ -86,6 +86,14 @@ public class P09_RepeatEachCharITimes {
 	/*
 	 * --- Pseudo Code ---
 	 * 
+	 * 1. Convert input nums into String
+	 * 2. Convert into chararray
+	 * 3. Create an arraylist for output
+	 * 4. Create two loops - Outer loop for 4 times (Since max occ is 4)
+	 * 5. Inner loop - length of ch.
+	 * 6. Create a while loop to repeat inner loop character i times
+	 * 7. Add into arraylist for output.
+	 * 
 	 */	
 	
 	private void repeatChars(int nums) {
