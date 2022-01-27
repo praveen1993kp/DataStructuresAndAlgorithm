@@ -1,13 +1,17 @@
-package interviewQuestions;
+package bruteForce_Arrays;
+
+import java.util.ArrayList;
 
 import org.junit.Test;
 
-public class redBus_MaxOccurredInteger {
+public class P09_RepeatEachCharITimes {
 
 	/*
 	 * PROBLEM STATEMENT 
 	 * 
+	 * Input = 1234;
 	 * 
+	 * output = {1234,11223344,111222333444,1111222233334444};
 	 * 
 	 * 
 	 * 
@@ -61,9 +65,12 @@ public class redBus_MaxOccurredInteger {
 	@Test
 	public void example1() {
 		//Positive Test Data
-		
+		int nums = 1234;
+		repeatChars(nums);
 	}
 	
+	
+
 	@Test
 	public void example2() {
 		//Edge Case Test Data
@@ -81,7 +88,23 @@ public class redBus_MaxOccurredInteger {
 	 * 
 	 */	
 	
-	public void method1() {
+	private void repeatChars(int nums) {
+		String input = String.valueOf(nums);
+		char[] ch = input.toCharArray();
+		String output = "";
+		ArrayList<String> lst = new ArrayList<>();
 		
+		for(int i=0;i<4;i++) {
+			output = "";
+			for(int j=0;j<ch.length;j++) {
+				int val = i;
+				while(val>=0) {
+					output += ch[j];
+					val--;
+				}
+			}
+			lst.add(output);
+		}
+		System.out.println(lst.toString());
 	}
 }
