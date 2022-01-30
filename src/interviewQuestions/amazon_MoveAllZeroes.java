@@ -12,6 +12,7 @@ public class amazon_MoveAllZeroes {
 	 * Write an optimized program to move all the zeroes to the first.
 	 * 
 	 * 
+	 * You are not supposed to change the order of other elements.
 	 * 
 	 * 
 	 * 
