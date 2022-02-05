@@ -1,5 +1,7 @@
 package slidingWindow_Arrays;
 
+import java.util.HashMap;
+
 import org.junit.Test;
 
 import junit.framework.Assert;
@@ -94,6 +96,46 @@ public class P03_ContainsDuplicateII {
 		
 	}
 	
+	@Test
+	public void example4() {
+		//Negative Test Data
+		int[] nums = {1,0,1,1};
+		int k = 1;
+		boolean expectedOutput = true;
+		Assert.assertEquals(expectedOutput, containsDuplicate(nums,k));
+		
+	}
+	
+	@Test
+	public void example5() {
+		//Negative Test Data
+		int[] nums = {1,2,3,1,2,3};
+		int k = 2;
+		boolean expectedOutput = false;
+		Assert.assertEquals(expectedOutput, containsDuplicate(nums,k));
+		
+	}
+	
+	@Test
+	public void example6() {
+		//Negative Test Data
+		int[] nums = {1};
+		int k = 1;
+		boolean expectedOutput = false;
+		Assert.assertEquals(expectedOutput, containsDuplicate(nums,k));
+		
+	}
+	
+	@Test
+	public void example7() {
+		//Negative Test Data
+		int[] nums = {99,99};
+		int k = 2;
+		boolean expectedOutput = true;
+		Assert.assertEquals(expectedOutput, containsDuplicate(nums,k));
+		
+	}
+	
 	/*
 	 * --- Pseudo Code ---
 	 * 1. Create two pointers left=0, right=1 and variable leng
@@ -104,21 +146,17 @@ public class P03_ContainsDuplicateII {
 	 */	
 	
 	private boolean containsDuplicate(int[] nums, int k) {
-		int left = 0, right = 1, leng = 0;
-		boolean result = false;
-		while(right<nums.length && left<nums.length) {
-			if(nums[left] == nums[right]) {
-				leng = left-right;
-				result = Math.abs(leng)==k;	
-				if (result) break;
+		HashMap<Integer,Integer> hMap = new HashMap<>();
+		if(k>nums.length) return false;
+		for(int i=0;i<nums.length;i++) {
+			if(!hMap.containsKey(nums[i])) {
+				hMap.put(nums[i], i);
+			} else {
+				if(i - hMap.get(nums[i]) <= k) return true;
+				hMap.put(nums[i], i);
 			}
-			right++;
-			if(right==nums.length) {
-				left++;
-				right = left+1;
-			}	
 		}
-		System.out.println(result);
-		return result;
+		
+		return false;
 	}
 }
