@@ -2,6 +2,7 @@ package slidingWindow_Arrays;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.TreeMap;
 
 import org.junit.Test;
 
@@ -103,18 +104,22 @@ public class P08_KDiffPairsInAnArray {
 	 */	
 	
 	private void findKDiffPairs(int[] nums, int k) {
-		int left=0,right=1;
+		int left=0,right=1,count=0;
 		Arrays.sort(nums);
-		HashSet<String> hSet = new HashSet<>();
+		String prevVal = "";
 		while(right<nums.length) {
 			if(Math.abs(nums[right]-nums[left]) < k) right++;
 			else if (Math.abs(nums[right]-nums[left]) > k) left++;
-			else if (nums[right]==nums[left]) {
-				if(left!=right)
-					hSet.add(""+nums[left++]+nums[right++]);
-				else right++;
+			else {
+				if(left!=right) {
+					if(prevVal != ""+nums[left]+nums[right]) {
+						prevVal = ""+nums[left++]+nums[right++];
+						System.out.println(prevVal);
+						count++;
+					} else right++;	
+				}	
 			}
 		}
-		System.out.println(hSet.size());
+		System.out.println(count);
 	}
 }
