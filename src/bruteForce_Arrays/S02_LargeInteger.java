@@ -85,8 +85,8 @@ public class S02_LargeInteger {
 	@Test
 	public void example2() {
 		//Edge Case Test Data
-		int[] nums = {9,9,9,9};
-		int[] expectedOutput = {1,0,0,0,0};
+		int[] nums = {9,8,7,6,5,4,3,2,1,0};
+		int[] expectedOutput = {9,8,7,6,5,4,3,2,1,1};
 		
 		Assert.assertTrue(Arrays.equals(expectedOutput, largeInteger(nums)));
 		
@@ -114,7 +114,7 @@ public class S02_LargeInteger {
 	        	for(int j=0;j<digits.length;j++) {
 	        	tempVariable += digits[j];
 	        	}
-	        	Integer tempNumber = Integer.valueOf(tempVariable);
+	        	Long tempNumber = Long.valueOf(tempVariable);
 	        	tempNumber = tempNumber + 1;
 	        	List<Integer> lst = new ArrayList<Integer>();
 	        	tempVariable = "";
