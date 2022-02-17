@@ -86,30 +86,42 @@ public class P10_KRadiusSubarrayAverages {
 		findSubarrayAverages(nums,k);
 	}
 	
+	@Test
+	public void example4() {
+		//Negative Test Data
+		int[] nums = {10000};
+		int k=10000;
+		findSubarrayAverages(nums,k);
+	}
+	
+	
 	/*
 	 * --- Pseudo Code ---
 	 * 
 	 */	
 	
 	private int[] findSubarrayAverages(int[] nums,int k) {
+		int[] ans = new int[nums.length];
 		int windowSize = 2*k + 1;
-        int[] res = new int[nums.length];
-        Arrays.fill(res, -1);
-        if (nums.length < windowSize) {
-            // array is too small - no k-radius average
-            return res;
-        }
-        // init the first k-radius average
-        long windowSum = 0;
-        for (int i=0; i<windowSize; i++) {
-            windowSum += nums[i];
-        }
-        res[k] = (int) (windowSum / windowSize);
-        // i is the center of current window
-        for (int i=k+1; i<nums.length-k; i++) {
-            windowSum += nums[i+k] - nums[i-k-1];
-            res[i] = (int) (windowSum / windowSize);
-        }
-        return res;
+		
+		int left=0,right=0,mid=k;
+		long sum=0;
+		
+		Arrays.fill(ans, -1);
+		if(nums.length < windowSize) return ans;
+		while(right<=(mid+k)) {
+			sum += nums[right++];
+		}
+		System.out.println(sum);
+		ans[mid++] = (int) sum/windowSize;
+		System.out.println(Arrays.toString(ans));
+		
+		while(right<nums.length) {
+			sum = sum - nums[left++] + nums[right++];
+			ans[mid++] = (int) sum/windowSize;
+			System.out.println(Arrays.toString(ans));
+		}
+		System.out.println(Arrays.toString(ans));
+		return ans;
 	}
 }
