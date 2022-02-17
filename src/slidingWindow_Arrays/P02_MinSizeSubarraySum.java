@@ -9,7 +9,12 @@ public class P02_MinSizeSubarraySum {
 	/*
 	 * PROBLEM STATEMENT 
 	 * 
+	 * Leetcode - 209
 	 * 
+	 * Given an array of positive integers nums and a positive integer target, return the minimal
+	 * length of a contiguous subarray, of which the sum is greater than or equal to target.
+	 * 
+	 * If there is no such subarray, return 0 instead.
 	 * 
 	 * 
 	 * 
@@ -95,29 +100,29 @@ public class P02_MinSizeSubarraySum {
 	
 	/*
 	 * --- Pseudo Code ---
-	 * 1. Create left = 0 and right = 0. Create variables minlen and assign it to Integer.MAX_NUMBER and initialize sum = 0							
-	 * 2. Traverse through while loop							
-	 * 3. while sum > target, reduce the sum by increasing left							
-	 * 4. When sum < target, increase right and add to sum							
-	 * 5. Return sum and update minleng when sum == target							
+	 * 1. Create left = 0 and right = 0. Create variables minlen and assign it to Integer.MAX_NUMBER and initialize sum = nums[right]							
+	 * 2. Traverse for right < nums.length
+	 * 3. If sum < target
+	 * 		3a. Increment the right
+	 * 		3b. If right less than nums length, add nums[right] to sum
+	 * 4. Else
+	 * 		4a. Calculate minLength between minLength and right-left+1
+	 * 		4b. Decrement sum by nums[left]
+	 * 5. If minLength is still equal to Integer.maxValue, return 0. Else return the minLength value		
 	 */	
 	
 	private int minSubArray(int[] nums, int target) {
-		int pointer1 = 0, pointer2 = 0, minlen = Integer.MAX_VALUE, sum = 0, len = 0; 	
-		while(pointer2<nums.length) {
-			sum += nums[pointer2];
-			while(sum > target) sum -= nums[pointer1++];
-			if (sum < target) pointer2++;
-			else if (sum == target) {
-				len = pointer2-pointer1+1;
-				if (len <= minlen) minlen = len;
-					sum -= nums[pointer1++];
-					pointer2++;	
-			}			
-		}
-		if(minlen==Integer.MAX_VALUE) minlen = 0;
-		System.out.println(minlen);
-		return minlen;
+		int left=0,right=0,sum = nums[right],minLength = Integer.MAX_VALUE;    
+        while(right<nums.length){
+            if(sum < target) {
+                right++;
+                if(right<nums.length) sum += nums[right];
+            } else {
+                minLength = Math.min(minLength,right-left+1);
+                sum -= nums[left++];
+            }     
+        }
+        return (minLength==Integer.MAX_VALUE) ? 0 : minLength;
 		}
 		
 	}
