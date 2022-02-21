@@ -117,4 +117,9 @@ public class P03_MajorityElement {
 		System.out.println(maxNumber);
 		return maxNumber;
 	}
+	
+	public int majorityElement_Sort(int[] nums) {
+		Arrays.sort(nums);
+        return nums[nums.length/2];
+	}
 }
