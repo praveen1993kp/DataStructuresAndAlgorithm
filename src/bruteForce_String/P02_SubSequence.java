@@ -114,6 +114,16 @@ public class P02_SubSequence {
 	 * 	4a. If either of strings is null, return false
 	 * 	4b. If length of s>t, return false
 	 * 	4c. If length of s and t are equal, check if both are equal, else return false
+	 * 
+	 * Approach 2 - Two Pointer
+	 * 
+	 * 1. Create pointers sPointer and tPointer and assign them to s and t strings respectively.
+	 * 2. If the length of s is greater than t length, return false
+	 * 3. Traverse till tPointer cross t length and sPointer crosses s length
+	 * 4. if s.charAt(sPointer) equals t.charAt(tPointer) increment sPointer
+	 * 5. By default increment tPointer
+	 * 6. Return the result of sPointer==s.length()
+	 * 
 	 *  
 	 * 
 	 */	
@@ -142,6 +152,17 @@ public class P02_SubSequence {
 		result = s.equals(outputString);
 		
 	return result;	
+	}
+	
+	public boolean subSequence_TwoPointer(String s, String t) {
+		int sPointer=0,tPointer=0;
+        if(s.length()>t.length()) return false;
+        while(tPointer<t.length() && sPointer<s.length()){
+            if(s.charAt(sPointer)==t.charAt(tPointer))
+                sPointer++; 
+            tPointer++;
+        }
+        return (sPointer==s.length());
 	}
 }
 	
