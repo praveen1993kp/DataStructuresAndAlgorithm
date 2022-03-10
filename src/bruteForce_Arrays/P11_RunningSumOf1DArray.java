@@ -2,7 +2,7 @@ package bruteForce_Arrays;
 
 import org.junit.Test;
 
-public class P26_RunningSumOf1DArray {
+public class P11_RunningSumOf1DArray {
 
 	/*
 	 * PROBLEM STATEMENT 
