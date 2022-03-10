@@ -97,6 +97,9 @@ public class P21_RotateArray_RightRotation {
 	 * 
 	 * Right rotation formula:
 	 * 
+	 * Edge case : Calculate k as k%n to avoid issue if n<k
+	 * 
+	 * 
 	 * 1. Rotate elements from 0 to n-1
 	 * 2. Rotate elements from 0 to k-1
 	 * 3. Rotate elements from k to n-1
