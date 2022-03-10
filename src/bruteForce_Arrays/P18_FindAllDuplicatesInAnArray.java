@@ -2,6 +2,7 @@ package bruteForce_Arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -95,6 +96,16 @@ public class P18_FindAllDuplicatesInAnArray {
 	 * 4. Traverse while right less than nums.length
 	 * 5. If nums[left] == nums[right] add into arraylist
 	 * 6. Return arraylist
+	 * 
+	 * Approach 2 : Constant Extra Space 
+	 * 
+	 * Since it is mentioned that numbers from 1 to n are available, create an array of size n+1
+	 * 1. Create an array of size n+1
+	 * 2. Create a list for output
+	 * 3. Traverse through nums array
+	 * 4. If the value of arr[nums[i]]==0, increment it
+	 * 5. Else, add it to list
+	 * 6. Return the list
 	 */	
 	
 	private ArrayList<Integer> findDuplicates(int[] nums) {
@@ -104,5 +115,15 @@ public class P18_FindAllDuplicatesInAnArray {
         while(right<nums.length)
             if(nums[left++] == nums[right++]) al.add(nums[left]);
         return al;
+	}
+	
+	private List<Integer> findDuplicates_ConstantAdditionalSpace(int[] nums) {
+		int[] arr = new int[nums.length+1];
+        List<Integer> lst = new ArrayList<>();
+        for(int i=0;i<nums.length;i++){
+            if(arr[nums[i]]==0) arr[nums[i]]++;
+            else lst.add(nums[i]);   
+        }
+        return lst;
 	}
 }
