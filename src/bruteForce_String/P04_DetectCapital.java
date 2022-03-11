@@ -9,7 +9,7 @@ public class P04_DetectCapital {
 	/*
 	 * PROBLEM STATEMENT 
 	 * 
-	 * Leetcode - 540
+	 * Leetcode - 520
 	 * 
 	 * We define the usage of capitals in a word to be right when one of the following cases holds:
 	 * 
