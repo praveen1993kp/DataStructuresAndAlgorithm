@@ -110,25 +110,14 @@ public class S02_LargeInteger {
 	 */	
 		
 		public int[] largeInteger(int[] digits) {
-	        	String tempVariable = "";
-	        	for(int j=0;j<digits.length;j++) {
-	        	tempVariable += digits[j];
-	        	}
-	        	Long tempNumber = Long.valueOf(tempVariable);
-	        	tempNumber = tempNumber + 1;
-	        	List<Integer> lst = new ArrayList<Integer>();
-	        	tempVariable = "";
-        		tempVariable += tempNumber;
-	        	for(int j=0;j<tempVariable.length();j++) {
-		        	
-		        	lst.add(Character.getNumericValue(tempVariable.charAt(j)));
-		        	}
-	        	int[] outputArray = new int[lst.size()];
-	        	for(int k=0;k<lst.size();k++) {
-	        		outputArray[k] = lst.get(k);
-	        	}
-	        	//System.out.println(Arrays.toString(outputArray));
-	        	return outputArray;
+			int n = digits.length;
+	        int[] ans = new int[n+1]; 
+	        for (int i = n-1; i >= 0; i--){
+	            if (digits[i] + 1 == 10){
+	                digits[i] = 0; ans[0] = 1;
+	            }else {digits[i] += 1;
+	                  return digits;}
+	        }return ans;
 	        	
 	        }
 	        
