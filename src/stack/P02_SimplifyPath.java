@@ -144,4 +144,24 @@ public class P02_SimplifyPath {
 		System.out.println(sb.toString());
 		return sb.toString();
 	}
+	
+	private String simplifyPath_Understandable(String path) {
+		Stack<String> stack = new Stack<>();
+		String[] str = path.split("/");
+        int i=0;
+        while(i<str.length){
+            if(str[i].equals(".") || str[i].equals("")) i++;
+            else if(str[i].equals("..")){
+                if(!stack.isEmpty()) stack.pop();
+                i++;
+            } else stack.push(str[i++]);
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!stack.isEmpty()){
+            sb.insert(0,stack.pop());
+            sb.insert(0,"/");
+        }
+        if(sb.toString().equals("")) sb.append("/");
+        return sb.toString();
+	}
 }
