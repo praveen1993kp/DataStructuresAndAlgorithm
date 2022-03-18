@@ -77,7 +77,7 @@ public class P08_ValidAnagram {
 		String s = "anagram";
 		String t = "nagaram";
 		boolean expected = true;
-		Assert.assertEquals(expected, isValidAnagram_UsingHashMap(s,t));
+		Assert.assertEquals(expected, isValidAnagram(s,t));
 	}
 	
 	@Test
@@ -135,8 +135,8 @@ public class P08_ValidAnagram {
 	
 	private boolean isValidAnagram(String s, String t) {
 		if(s.length()!=t.length()) return false;
-		char[] sAscii =  new char[26];
-		char[] tAscii =  new char[26];
+		int[] sAscii =  new int[26];
+		int[] tAscii =  new int[26];
 		for(int i=0;i<s.length();i++) {
 			sAscii[s.charAt(i)-'a']++;
 			tAscii[t.charAt(i)-'a']++;
