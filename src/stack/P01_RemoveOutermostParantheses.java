@@ -126,20 +126,18 @@ public class P01_RemoveOutermostParantheses {
 	
 	private String remove(String s) {
 		Stack<Character> stack = new Stack<>();
-		char[] ch = s.toCharArray();
-		StringBuffer sb = new StringBuffer();
-		
-		for (char c : ch) {
-			if(c=='(') {
-				if(stack.size()>=1) sb.append(c);
-					stack.push(c);
-			} else {
-				if(stack.size()>1) sb.append(c);
-					stack.pop();
-				}
-			}
-		System.out.println(sb.toString());
-		return sb.toString();
+        StringBuilder sb = new StringBuilder();
+        for(char ch : s.toCharArray()){
+            if(ch=='(') {
+            	if(stack.size()>=1) sb.append(ch);
+            	stack.push(ch);
+            } else {
+                if(stack.size()>1) sb.append(ch);
+                    stack.pop();    
+                }
+            }
+        System.out.println(sb.toString());
+        return sb.toString();
 		}
 		
 }
