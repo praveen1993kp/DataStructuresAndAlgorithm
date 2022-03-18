@@ -1,23 +1,18 @@
-package queue;
+package slidingWindow_Arrays;
 
-import java.util.ArrayDeque;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map.Entry;
-import java.util.TreeMap;
+import java.util.Arrays;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-import junit.framework.Assert;
-
-public class P01_RotateArray {
+public class P11_SlidingWindowMaximum {
 
 	/*
 	 * PROBLEM STATEMENT 
 	 * 
-	 * Leetcode - 189
+	 * Leetcode - 239
 	 * 
-	 * Given an array, rotate the array to the right by k steps, where k is non-negative.
+	 * Sliding Window Maximum
 	 * 
 	 * 
 	 * 
@@ -71,28 +66,28 @@ public class P01_RotateArray {
 	@Test
 	public void example1() {
 		//Positive Test Data
-		int[] nums = {1,2,3,4,5,6,7};
-		int k = 3;
-		//output = {5,6,7,1,2,3,4};
-		rotateArrayToRight(nums,k);
+		int[] nums = {1,3,-1,-3,5,3,6,7};
+		int k=3;
+		int[] output = {3,3,5,5,6,7};
+		Assert.assertTrue(Arrays.equals(output, slidingWindowMaximum(nums,k)));
 	}
 	
 	@Test
 	public void example2() {
 		//Edge Case Test Data
-		int[] nums = {1,2,3,4,5,6,7};
-		int k = 6;
-		//output = {2,3,4,5,6,7,1};
-		rotateArrayToRight(nums,k);
+		int[] nums = {1,2,3};
+		int k=1;
+		int[] output = {1,2,3};	
+		Assert.assertTrue(Arrays.equals(output, slidingWindowMaximum(nums,k)));
 	}
 	
 	@Test
 	public void example3() {
 		//Negative Test Data
-		int[] nums = {-1,-100,3,99};
-		int k = 2;
-		//output = {3,99,-1,-100};
-		rotateArrayToRight(nums,k);
+		int[] nums = {1,3,-1,-3,5,3,6,7};
+		int k=7;
+		int[] output = {3,3,5,5,6,7};
+		Assert.assertTrue(Arrays.equals(output, slidingWindowMaximum(nums,k)));
 	}
 	
 	/*
@@ -100,19 +95,10 @@ public class P01_RotateArray {
 	 * 
 	 */	
 	
-	private String rotateArrayToRight(int[] nums, int k) {
-		ArrayDeque<Integer> deque = new ArrayDeque<>();
+	private int[] slidingWindowMaximum(int[] nums,int k) {
 		
-		int index=nums.length-1;
-		int kIndex = k;
-		while(kIndex>0) {
-			deque.push(nums[index--]);
-			kIndex--;
-		}
-		for(int i=0;i<nums.length-k;i++) deque.offer(nums[i]);
-		//System.out.println(deque);
 		
-		return deque.toString();
+		
+		return null;
 	}
-
 }
