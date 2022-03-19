@@ -161,4 +161,17 @@ public class P01_SquareOfArrayElements {
 		System.out.println(Arrays.toString(outputArray));
 		return outputArray;
 	}
+	
+	private int[] square_OptimizedSoln(int[] nums) {
+		//twoPointer	
+		int left=0,right=nums.length-1,index=right;
+        int[] ans = new int[nums.length];
+        for(int i=0;i<nums.length;i++){
+            nums[i] *= nums[i];
+        }
+        while(left<=right){
+            ans[index--] = nums[left] < nums[right] ? nums[right--] : nums[left++];
+        }
+        return ans;	
+	}
 }
