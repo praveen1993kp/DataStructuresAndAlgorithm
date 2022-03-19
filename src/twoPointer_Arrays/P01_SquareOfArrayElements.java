@@ -100,6 +100,9 @@ public class P01_SquareOfArrayElements {
 	
 	/*
 	 * --- Pseudo Code ---
+	 * 
+	 * Approach 2 :
+	 * 
 	 * 1) Create a new array of same size and value
 		2) left = 0, right = len-1
 		3) insertIndex = len - 1 (bigger number at end)
@@ -107,6 +110,18 @@ public class P01_SquareOfArrayElements {
     		a) If left absolute is smaller than right absolute
          --> insert the squared value of left in the insert index
     		b) else insert the squared value of right in the insert index
+	 *
+	 *
+	 * Approach 3:
+	 * 
+	 * 1. Create a new array of nums length
+	 * 2. Create pointers left=0,right=len-1 and insertIndex=len-1
+	 * 3. Traverse through given array and square all the values
+	 * 4. For each element, compare the values from left and right and add highest value to index
+	 * 5. Increment/decrement the pointers accordingly and decrement insertIndex 
+	 * 6. Return new array
+	 *
+	 *
 	 */	
 	
 	public int[] squareMethod(int[] nums) {
