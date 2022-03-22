@@ -85,10 +85,10 @@ public class P02_RemoveTargetElement {
 	
 	/*
 	 * ---  Pseudo code  ---
-	 * 1. Create two pointers and initialize it to 0 (Equidirectional)
-	 * 2. Traverse using the while/for loop
-	 * 3. if the current element returned from pointer2 is not equal to target, swap the numbers
-	 * 4. After the loop, return the elements available till pointer1
+	 * 1. Create two pointers left and right to 0
+	 * 2. If nums[right] != target, swap and then increment left
+	 * 3. Increment right by default
+	 * 4. Return left
 	 * 
 	 * 
 	 */
