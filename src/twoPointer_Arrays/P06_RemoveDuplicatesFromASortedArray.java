@@ -2,14 +2,14 @@ package twoPointer_Arrays;
 
 import org.junit.Test;
 
-public class P06_RemoveTargetElementInASortedArray {
+public class P06_RemoveDuplicatesFromASortedArray {
 
 	/*
 	 * PROBLEM STATEMENT 
 	 * 
-	 * Leetcode - 25
+	 * Leetcode - 26
 	 * 
-	 * Remove Target Element In A Sorted Array
+	 * Remove Duplicates Element In A Sorted Array
 	 * 
 	 * 
 	 * 
@@ -89,6 +89,11 @@ public class P06_RemoveTargetElementInASortedArray {
 	/*
 	 * --- Pseudo Code ---
 	 * 
+	 * 1. Create pointers left and right. left = 0 and right = 1
+	 * 2. If nums[left] != nums[right], increment left and then swap
+	 * 3. Increment right by default
+	 * 4. Return left+1
+	 * 
 	 */	
 	
 	private int removeFromSortedArray(int[] nums) {
@@ -96,13 +101,11 @@ public class P06_RemoveTargetElementInASortedArray {
 		
 		while(right<nums.length) {
 			if(nums[left]!=nums[right]) {
-				temp = nums[left];
-				nums[left] = nums[right];
-				nums[right] = temp;
-			} else left++;
+				left++;
+				nums[left++] = nums[right];
+			}
 			right++;
 		}
-		System.out.println(right-left);
-		return right-left;
+		return left+1;
 	}
 }
