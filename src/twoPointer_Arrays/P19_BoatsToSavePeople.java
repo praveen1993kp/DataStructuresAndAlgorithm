@@ -119,6 +119,16 @@ public class P19_BoatsToSavePeople {
 	 * 		6b. Else increment left
 	 * 7. Return counter
 	 * 
+	 * Optimized soln:
+	 * 
+	 * 1. Sort the given array
+	 * 2. Create pointers left for lightest person and right for heaviest person. Create counter
+	 * 3. Traverse while left<=right
+	 * 4. Increment the counter
+	 * 5. Only If sum of left and right <= limit, increment left
+	 * 6. Decrement right by default
+	 * 7. Return counter
+	 * 
 	 * 
 	 * 
 	 * 
@@ -136,6 +146,18 @@ public class P19_BoatsToSavePeople {
                 if(people[left] <= people[right]) right--;
                 else left++;
             } 
+        }
+        return counter;
+	}
+	
+	private int findMinBoats_Optimized(int[] people, int limit) {
+		Arrays.sort(people);
+        int left=0,right=people.length-1,counter=0;
+        while(left<=right){
+            counter++;
+            if((people[left] + people[right]) <= limit)
+                left++;
+            right--;
         }
         return counter;
 	}
