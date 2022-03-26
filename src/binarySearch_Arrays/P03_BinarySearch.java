@@ -99,6 +99,13 @@ public class P03_BinarySearch {
 	/*
 	 * --- Pseudo Code ---
 	 * 
+	 * 1. Create pointers left=0,right=nums.length-1 and mid = 0
+	 * 2. Traverse till left<=right
+	 * 3. If nums[mid] == target, return mid
+	 * 4. Else if nums[mid] > target, decrement right
+	 * 5. Else increment left
+	 * 6. return -1 by default
+	 * 
 	 */	
 	
 	private int findTarget(int[] nums, int target) {
