@@ -71,7 +71,7 @@ public class P20_SearchA2DMatrix {
 		//Positive Test Data
 		int[][] matrix = {{1,3,5,7},{10,11,16,20},{23,30,34,60}};
 		int target = 3;
-		approach1_bruteForce(matrix,target);
+		approach3_binarySearchOptimized(matrix,target);
 	}
 	
 	@Test
@@ -111,7 +111,9 @@ public class P20_SearchA2DMatrix {
 	 * 5. When target is found, return true
 	 * 6. Return false by default
 	 * 
-	 * Approach 3 : Binary Search_Without outer for loop
+	 * Approach 3 : Binary Search_Without outer for loop  
+	 * Logic - Starting from middle most element of whole array and proceeding based on binary
+	 * search decision
 	 * 
 	 * 1. Create pointers left=0,right=m*n-1 and mid=0
 	 * 2. Traverse till left<=right
