@@ -111,6 +111,14 @@ public class P01_jewelsAndStones {
 	 * 		2a. For each character in stones, if the character is available in hmap, increase counter
 	 * 3. Return the counter
 	 * 
+	 * Ascii:
+	 * 
+	 * 1. Create a jewelsArray which can accomodate the ascii of jewel characters
+	 * 2. Add all the jewel character ascii into array
+	 * 3. Traverse through stones array. If the ascii entry of given character in array is greater than 0,
+	 * 		then increment the count
+	 * 4. Return the count.
+	 * 
 	 */	
 	
 	private int jewelsAndStones(String jewels, String stones) {
@@ -139,5 +147,18 @@ public class P01_jewelsAndStones {
 		for(int j=0;j<stones.length();j++) if(hMap.containsKey(stones.charAt(j))) counter++;
 		System.out.println(counter);
 		return counter;
+	}
+	
+	private int jewelsAndStonesAscii(String jewels, String stones) {
+		int count=0;
+        int[] jewelsArray = new int[128];
+        for(int i=0;i<jewels.length();i++){
+            jewelsArray[jewels.charAt(i)-'A']++;
+        }
+        
+        for(int i=0;i<stones.length();i++){
+            if(jewelsArray[stones.charAt(i)-'A']>0) count++;
+        }
+        return count;
 	}
 }
