@@ -2,6 +2,7 @@ package hashMap;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -189,6 +190,29 @@ public class P04_MaximumNumberOfBalloons {
 			counter = Math.min(counter, Math.min(diff, diff2));
 		}
 		return counter;
+	}
+	
+	private int findMaximumNumberOfBalloons_UsingEntrySet(String text) {
+		HashMap<Character,Integer> hMap = new HashMap<>();
+        String target = "balloon";
+        int count = 0;
+        for(int i=0;i<text.length();i++){
+           char ch = text.charAt(i);
+           if(ch=='b' || ch=='a' || ch== 'l' || ch== 'o' || ch=='n'){
+               hMap.put(ch,hMap.getOrDefault(ch,0)+1);
+               count++;
+           }          
+        }
+        if(count < target.length()) return 0;
+        System.out.println(hMap.toString());
+        int maxBalloons = Integer.MAX_VALUE;
+        for(Map.Entry<Character,Integer> entry: hMap.entrySet()){
+            if(entry.getKey() == 'l' || entry.getKey() == 'o')
+                maxBalloons = Math.min(maxBalloons,entry.getValue()/2);
+            else
+                maxBalloons = Math.min(maxBalloons,entry.getValue());
+        }
+        return maxBalloons;
 	}
 	
 	private int findMaximumNumberOfBalloons2(String text) {
