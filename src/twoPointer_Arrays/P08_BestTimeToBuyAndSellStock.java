@@ -87,8 +87,9 @@ public class P08_BestTimeToBuyAndSellStock {
 	/*
 	 * --- Pseudo Code ---
 	 * 
-	 * 1. Create Variables amtAtMin and assign it to Integer.Max value and maxProfit,currentProfit
-	 * 2. Traverse through the given array
+	 * 1. Create Variables amtAtMin and assign it to prices[0] and maxProfit as 0
+	 * 		1a. Alternatively amtAtMin can also be assigned to Integer.MAX_VALUE and start traversing from index 0
+	 * 2. Traverse through the given array starting from 1st index value
 	 * 3. If prices[i] less than amtAtMin, assign the value to amtAtMin
 	 * 4. Else, calculate difference between prices[i] and amtAtMin 
 	 * 5. If the difference is greater than maxProfit, assign currentprofit to maxProfit				
@@ -96,11 +97,11 @@ public class P08_BestTimeToBuyAndSellStock {
 	 */	
 	
 	private int findBestTimeToBuyAndTellStock(int[] prices) {
-		int amtAtMin = Integer.MAX_VALUE, maxProfit = 0,currentProfit = 0;
-		for(int i=0;i<prices.length;i++) {
+		int amtAtMin = Integer.MAX_VALUE, maxProfit = 0;
+		for(int i=1;i<prices.length;i++) {
 			if(prices[i] < amtAtMin) amtAtMin = prices[i];
 			else {
-				currentProfit = prices[i] - amtAtMin;
+				int currentProfit = prices[i] - amtAtMin;
 				if(currentProfit > maxProfit) maxProfit = currentProfit;
 			}
 		}
