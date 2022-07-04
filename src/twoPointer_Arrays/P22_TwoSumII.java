@@ -1,10 +1,10 @@
-package slidingWindow_Arrays;
+package twoPointer_Arrays;
 
 import java.util.Arrays;
 
 import org.junit.Test;
 
-public class P12_TwoSumII {
+public class P22_TwoSumII {
 
 	/*
 	 * PROBLEM STATEMENT 
