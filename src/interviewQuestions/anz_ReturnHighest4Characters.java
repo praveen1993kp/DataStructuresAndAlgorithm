@@ -80,8 +80,8 @@ public class anz_ReturnHighest4Characters {
 	@Test
 	public void example3() {
 		//Negative Test Data
-		char[] arr = {'v','v','v','v','v','v','v'};
-		char[] output = {'v','v','v','v'};
+		char[] arr = {'v','a','b','c','v','v','v'};
+		char[] output = {'v','c','b','a'};
 		Assert.assertArrayEquals(highestChars_UsingAscii(arr), output);
 	}
 	
@@ -122,17 +122,15 @@ public class anz_ReturnHighest4Characters {
 		for(char ch : arr)
 			ascii[ch-'a']++;
 		
-		int insertIndex = 3;
+		int insertIndex = 0;
 		for(int i=ascii.length-1;i>=0;i--) {
-			if(ascii[i-'a'] != 0) {
-				int currentVal = ascii[i-'a'];
-				while(insertIndex>=0 && currentVal>=0) {
-					output[insertIndex--] = (char)(currentVal - 'a');
-				}
-				if(insertIndex<0) break;
+			if(ascii[i] != 0) {
+				if(insertIndex <=3) {
+					output[insertIndex++] = (char) (i + 'a');
+				} else break;
 			}
 		}
-		
+		//System.out.println(Arrays.toString(output));
 		return output;
 	}
 	
